@@ -7,9 +7,9 @@
 
 <style>
 
-/* =========================
-   FONDO DINÁMICO MORADO
-=========================*/
+/* ======================================================
+   CONFIGURACIÓN GENERAL Y FONDO
+====================================================== */
 body{
   margin:0;
   font-family: 'Segoe UI', sans-serif;
@@ -20,44 +20,153 @@ body{
   overflow-x:hidden;
 }
 
+/* Animación del fondo */
 @keyframes gradientMove{
   0%{background-position:0% 50%;}
   50%{background-position:100% 50%;}
   100%{background-position:0% 50%;}
 }
 
-/* HERO */
+/* ======================================================
+   HEADER FIJO PROFESIONAL (NARANJA-AMARILLO)
+====================================================== */
 .hero{
+  position:fixed; /* Hace que quede fijo arriba */
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
   text-align:center;
-  padding:60px 20px 30px 20px;
+  padding:20px;
+  background: linear-gradient(90deg,#ff7b00,#ffb703);
+  box-shadow:0 8px 25px rgba(0,0,0,0.4);
 }
 
 .hero h1{
-  font-size:48px;
   margin:0;
+  font-size:32px;
+  font-weight:700;
 }
 
 .hero p{
-  opacity:0.8;
-  margin-top:10px;
-  font-size:18px;
+  margin:5px 0 15px 0;
+  font-size:14px;
+  opacity:0.9;
 }
 
-/* SECCIONES */
+/* Espacio para compensar header fijo */
+body::before{
+  content:"";
+  display:block;
+  height:130px;
+}
+
+/* ==========================================
+   PESTAÑA LATERAL RETRÁCTIL PROFESIONAL
+========================================== */
+
+.premium-tab-container{
+  position:fixed;
+  right:-120px; /* Oculta casi todo */
+  top:65%;
+  transform:translateY(-50%);
+  transition:0.35s ease;
+  z-index:999;
+}
+
+/* Caja principal */
+.premium-tab{
+  width:150px;
+  height:50px;
+  background:linear-gradient(135deg,#7c3aed,#5b21b6);
+  border-radius:25px 0 0 25px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  transition:0.3s;
+}
+
+/* Texto interno */
+.premium-label{
+  color:white;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.5px;
+  opacity:0;
+  transition:0.3s;
+}
+
+/* Estado expandido */
+.premium-tab-container.active{
+  right:0;
+}
+
+/* Mostrar texto solo expandido */
+.premium-tab-container.active .premium-label{
+  opacity:1;
+}
+
+/* Hover elegante */
+.premium-tab:hover{
+  transform:scale(1.05);
+  box-shadow:0 12px 25px rgba(0,0,0,0.5);
+}
+
+/* En móvil aún más pequeña */
+@media(max-width:768px){
+  .premium-tab{
+    width:130px;
+    height:45px;
+  }
+}
+
+
+/* ==========================================
+  TARJETA DE LA CLAVE
+========================================== */
+
+
+/* Tarjeta para ingresar clave */
+.unlock-card{
+  background:#fff;
+  color:#111;
+  max-width:350px;
+  margin:15px auto 0;
+  padding:20px;
+  border-radius:15px;
+  display:none;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.unlock-card input{
+  width:90%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  text-align:center;
+}
+
+/* ======================================================
+   SECCIONES
+====================================================== */
 section{
   margin:40px 20px;
 }
 
 h2{
-  margin-left:10px;
   font-weight:600;
+  margin-bottom:10px;
 }
 
-/* CARRUSEL */
+/* ======================================================
+   CARRUSEL PROFESIONAL
+====================================================== */
 .carousel-wrapper{
   position:relative;
-  display:flex;
-  align-items:center;
 }
 
 .carousel{
@@ -65,55 +174,52 @@ h2{
   gap:20px;
   overflow-x:auto;
   scroll-behavior:smooth;
-  padding:20px;
+  padding:20px 10px;
 }
 
+/* Flechas */
 .arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  background:#9333ea;
+  background:#ff7b00;
   border:none;
   color:white;
-  font-size:28px;
-  width:55px;
-  height:55px;
+  font-size:22px;
+  width:45px;
+  height:45px;
   border-radius:50%;
   cursor:pointer;
-  box-shadow:0 6px 20px rgba(0,0,0,0.4);
-  z-index:5;
+  box-shadow:0 5px 20px rgba(0,0,0,0.4);
+  z-index:10;
 }
 
-.arrow.left{ left:0; }
-.arrow.right{ right:0; }
+.arrow.left{ left:-10px; }
+.arrow.right{ right:-10px; }
 
-.arrow:hover{
-  transform:translateY(-50%) scale(1.1);
-}
-
-/* TARJETAS */
+/* ======================================================
+   TARJETAS PROFESIONALES
+====================================================== */
 .video-card{
-  background:rgba(0,0,0,0.35);
-  backdrop-filter:blur(8px);
-  border-radius:16px;
-  width:320px;
+  background:#111;
+  border-radius:18px;
+  width:300px;
   flex-shrink:0;
   padding:15px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.5);
-  transition:0.3s ease;
+  box-shadow:0 15px 35px rgba(0,0,0,0.6);
+  transition:0.4s;
   position:relative;
 }
 
 .video-card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 15px 35px rgba(0,0,0,0.6);
+  transform:translateY(-10px);
 }
 
 .video-card iframe{
   width:100%;
-  height:200px;
-  border:none;
+  height:180px;
   border-radius:12px;
+  border:none;
 }
 
 /* BLOQUEADO */
@@ -128,66 +234,196 @@ h2{
   left:0;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.7);
+  background:rgba(0,0,0,0.8);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:50px;
-  border-radius:16px;
+  font-size:40px;
+  border-radius:18px;
 }
 
-/* BOTON PREMIUM */
-.unlock-container{
-  text-align:center;
-  margin:50px 0;
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+@media(max-width:768px){
+
+  /* Header más compacto en móvil */
+  .hero{
+    padding:12px 10px;
+  }
+
+  .hero h1{
+    font-size:20px;
+  }
+
+  .hero p{
+    font-size:12px;
+    margin-bottom:8px;
+  }
+
+  /* Ajustamos el espacio compensador */
+  body::before{
+    height:110px;
+  }
+
+  .video-card{
+    width:240px;
+  }
+
+  .arrow{
+    display:none; /* Flechas ocultas en móvil */
+  }
+
 }
+
+/* ==========================================
+   PESTAÑA LATERAL PREMIUM MEJORADA
+========================================== */
+
+.premium-tab-container{
+  position:fixed;
+  right:-160px; /* Oculta casi todo */
+  top:50%;
+  transform:translateY(-50%);
+  transition:0.4s ease;
+  z-index:999;
+}
+
+/* Caja principal */
+.premium-tab{
+  width:200px;
+  height:120px;
+  background:linear-gradient(180deg,#ff7b00,#ffb703);
+  border-radius:15px 0 0 15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  position:relative;
+}
+
+/* Etiqueta interna (oculta al inicio) */
+.premium-label{
+  color:#111;
+  font-weight:700;
+  letter-spacing:1px;
+  opacity:0;               /* Oculta */
+  transition:opacity 0.3s;
+}
+
+/* Cuando se expande */
+.premium-tab-container.active{
+  right:0;
+}
+
+/* Mostrar texto solo cuando esté activa */
+.premium-tab-container.active .premium-label{
+  opacity:1;
+}
+
+/* Hover */
+.premium-tab:hover{
+  background:linear-gradient(180deg,#ff8c00,#ffc300);
+}
+
+/* ==========================================
+   BOTÓN NIVEL AVANZADO DESTACADO
+========================================== */
 
 .unlock-btn{
-  background:#22c55e;
+  background:linear-gradient(135deg,#39ff14,#00ff88); /* Verde fosforescente */
   border:none;
-  padding:14px 32px;
-  border-radius:12px;
-  color:white;
-  font-size:16px;
+  padding:16px 40px;
+  border-radius:50px;
+  color:#111;
+  font-size:17px;
+  font-weight:800;
   cursor:pointer;
-  box-shadow:0 6px 20px rgba(0,0,0,0.4);
-  transition:0.3s;
+  letter-spacing:1px;
+  margin-top:10px;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.4),
+    0 0 20px rgba(57,255,20,0.8);
+
+  transition:all 0.3s ease;
 }
 
+/* Cuando pasan el dedo / mouse */
 .unlock-btn:hover{
-  transform:scale(1.05);
+  background:linear-gradient(135deg,#7c3aed,#5b21b6); /* Morado */
+  color:#fff;
+  transform:translateY(-4px) scale(1.07);
+
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.5),
+    0 0 30px rgba(124,58,237,0.9);
 }
 
-.unlock-card{
-  background:rgba(0,0,0,0.5);
-  max-width:400px;
-  margin:20px auto;
-  padding:20px;
-  border-radius:16px;
-  display:none;
-  text-align:center;
+/* Hover */
+.unlock-btn:hover{
+  transform:translateY(-4px) scale(1.07);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.5),
+    0 0 30px rgba(255,183,3,1);
 }
 
-.unlock-card input{
-  width:80%;
-  padding:10px;
-  border:none;
-  border-radius:8px;
-  text-align:center;
+/* Animación */
+@keyframes pulseGlow{
+  0%{
+    box-shadow:
+      0 10px 25px rgba(0,0,0,0.4),
+      0 0 10px rgba(255,183,3,0.6);
+  }
+  50%{
+    box-shadow:
+      0 10px 25px rgba(0,0,0,0.4),
+      0 0 30px rgba(255,183,3,1);
+  }
+  100%{
+    box-shadow:
+      0 10px 25px rgba(0,0,0,0.4),
+      0 0 10px rgba(255,183,3,0.6);
+  }
 }
-
 </style>
 </head>
 
 <body>
 
+<!-- ======================================================
+     HEADER FIJO
+====================================================== -->
 <div class="hero">
   <h1>Domina el Tema</h1>
   <p>Explicaciones claras. Avance real. Sin confusión.</p>
+
+  <button class="unlock-btn">🚀 Activar Nivel Avanzado</button>
+
+  <div class="unlock-card" id="unlockCard">
+   <p><strong>🔐 Acceso exclusivo al CÍRCULO PREMIUM +</strong></p>
+<p>Introduce tu clave para continuar</p>
+    <input type="password" id="premiumKey" placeholder="Clave">
+    <br><br>
+    <button onclick="unlockPremium()">Entrar</button>
+  </div>
 </div>
 
-<!-- FREE -->
 
+<!-- ======================================================
+     Boton del slider
+====================================================== -->
+<div class="premium-tab-container" id="premiumTab">
+  <div class="premium-tab" onclick="togglePremiumTab()">
+    <span class="premium-label">CÍRCULO PREMIUM</span>
+  </div>
+</div>
+
+<!-- ======================================================
+     CONTENIDO GRATIS
+====================================================== -->
 <section>
   <h2>Contenido en Español – Acceso Inicial</h2>
   <div class="carousel-wrapper">
@@ -197,10 +433,12 @@ h2{
   </div>
 </section>
 
-<!-- NEUROELITE -->
-
+<!-- ======================================================
+     CONTENIDO PREMIUM
+====================================================== -->
 <section>
-  <h2>NEUROELITE</h2>
+<section id="premium">
+  <h2>CÍRCULO PREMIUM +</h2>
   <div class="carousel-wrapper">
     <button class="arrow left" onclick="scrollCarousel('premiumEs',-1)">❮</button>
     <div class="carousel" id="carousel-premiumEs"></div>
@@ -208,26 +446,16 @@ h2{
   </div>
 </section>
 
-<!-- DESBLOQUEO -->
-
-<div class="unlock-container">
-  <button class="unlock-btn">🚀 Activar Nivel Avanzado</button>
-
-  <div class="unlock-card" id="unlockCard">
-    <p>Ingresa tu clave:</p>
-    <input type="password" id="premiumKey" placeholder="Clave">
-    <br><br>
-    <button onclick="unlockPremium()">Entrar</button>
-  </div>
-</div>
-
 <script>
 
+/* ======================================================
+   LISTA DE VIDEOS
+====================================================== */
 const freeVideos = [
   "https://www.youtube.com/embed/Rp8h0XW9tY0",
   "https://www.youtube.com/embed/Ab_Sw8DpPbM",
   "https://www.youtube.com/embed/C1Fz4CJW1BA"
-  ];
+];
 
 const premiumEs = [
   "https://www.youtube.com/embed/1NZ4BDy8kvw",
@@ -235,12 +463,16 @@ const premiumEs = [
   "https://www.youtube.com/embed/hRmqfghE5Go"
 ];
 
+/* ======================================================
+   GENERADOR DE TARJETAS
+====================================================== */
 function generateVideos(list, containerId, locked=false){
   const container = document.getElementById(containerId);
 
   list.forEach(link=>{
     const card = document.createElement("div");
     card.classList.add("video-card");
+
     if(locked) card.classList.add("locked");
 
     card.innerHTML = `
@@ -255,13 +487,20 @@ function generateVideos(list, containerId, locked=false){
 generateVideos(freeVideos,"carousel-free");
 generateVideos(premiumEs,"carousel-premiumEs",true);
 
+/* ======================================================
+   MOSTRAR / OCULTAR PANEL DE CLAVE
+====================================================== */
 document.querySelector('.unlock-btn').addEventListener('click',()=>{
   const card = document.getElementById("unlockCard");
   card.style.display = card.style.display === "block" ? "none" : "block";
 });
 
+/* ======================================================
+   DESBLOQUEO PREMIUM
+====================================================== */
 function unlockPremium(){
   const key = document.getElementById("premiumKey").value;
+  const unlockCard = document.getElementById("unlockCard");
 
   if(key === "552455"){
     document.querySelectorAll(".video-card.locked").forEach(card=>{
@@ -269,23 +508,79 @@ function unlockPremium(){
       iframe.src = iframe.dataset.src;
       card.classList.remove("locked");
       card.querySelector(".lock-overlay").remove();
-      card.style.pointerEvents="auto";
-      card.style.opacity="1";
     });
 
-    alert("NEUROELITE activado 🎉");
+    // 🔥 Oculta la tarjeta después de desbloquear
+    unlockCard.style.display = "none";
+
+    // Limpia el input
+    document.getElementById("premiumKey").value = "";
+
+    alert("CÍRCULO PREMIUM + activado 🎉");
+
   }else{
     alert("Clave incorrecta");
   }
 }
 
+/* ======================================================
+   CONTROL DEL CARRUSEL
+====================================================== */
 function scrollCarousel(id,direction){
   const carousel = document.getElementById("carousel-"+id);
   carousel.scrollBy({
-    left: direction * 350,
+    left: direction * 320,
     behavior:"smooth"
   });
 }
+
+/* Scroll automático a sección premium */
+function goToPremium(){
+  document.getElementById("premium").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+/* ======================================================
+   CONTROL DEL CARRUSEL
+=================================================
+
+/* Expandir / retraer pestaña */
+function togglePremiumTab(){
+  const tab = document.getElementById("premiumTab");
+
+  if(!tab.classList.contains("active")){
+    // Si está cerrada → expandir
+    tab.classList.add("active");
+  } else {
+    // Si está abierta → ir a premium
+    document.getElementById("premium").scrollIntoView({
+      behavior:"smooth"
+    });
+
+    // Espera 600ms y vuelve a retraer
+    setTimeout(()=>{
+      tab.classList.remove("active");
+    },600);
+  }
+}
+
+function togglePremiumTab(){
+  const tab = document.getElementById("premiumTab");
+
+  if(!tab.classList.contains("active")){
+    tab.classList.add("active");
+  } else {
+    document.getElementById("premium").scrollIntoView({
+      behavior:"smooth"
+    });
+
+    setTimeout(()=>{
+      tab.classList.remove("active");
+    },500);
+  }
+}
+
 
 </script>
 
